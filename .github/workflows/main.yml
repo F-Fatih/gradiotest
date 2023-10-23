@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          repository: FFatih/gradiotest  # Remplacez par le chemin de votre référentiel
+          repository: F-Fatih/gradiotest  # Remplacez par le chemin de votre référentiel
           path: code  # Spécifiez ici le répertoire que vous voulez synchroniser
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
