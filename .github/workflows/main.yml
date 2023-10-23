@@ -10,12 +10,13 @@ jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           lfs: true
-          path: code
+          path: code  # Spécifiez ici le répertoire que vous voulez synchroniser
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/HF_USERNAME/SPACE_NAME main
+        run: git push --force https://FFatih:$HF_TOKEN@huggingface.co/spaces/FFatih/huggingface main
