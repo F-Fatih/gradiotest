@@ -12,7 +12,7 @@ jobs:
 
       - name: Copy Code directory to root
         run: |
-          cp -r Code/* .
+          cp -r code/* .
         working-directory: ${{ github.workspace }}
 
       - name: Push to hub
