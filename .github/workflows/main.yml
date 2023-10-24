@@ -19,6 +19,7 @@ jobs:
           git config user.name "$FFatih"
           git config user.email "f.fatih@outlook.fr"
           git config --global init.defaultBranch main
+          git branch -m main
           git add .
           git commit -m "Sync to Hugging Face"
           git push --force "https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/gradiotest" main
