@@ -16,11 +16,11 @@ jobs:
         run: |
           cd code  # Accéder au répertoire Code
           git init
-          git config user.name "$FFatih"
-          git config user.email "f.fatih@outlook.fr"
-          git config --global init.defaultBranch main
+          git config --global user.name "$FFatih"
           git config --global user.email "f.fatih@outlook.fr"
-          git branch -m main
+	  git config --global init.defaultBranch main
           git add .
           git commit -m "Sync to Hugging Face"
           git push --force "https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/gradiotest" main
+
+
