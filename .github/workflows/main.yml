@@ -9,16 +9,25 @@ jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          ref: main
           lfs: true
 
       - name: Copy Code folder
         run: |
-          rsync -avz --exclude '.*' ./Code/ ./
-        env:
-          PATH: ${{ runner.tools }}/rsync
+          # Créez un répertoire temporaire
+          mkdir temp_directory
+
+          # Copiez le contenu du dossier "Code" dans le répertoire temporaire
+          cp -r ./Code/* temp_directory/
+
+          # Déplacez le contenu du répertoire temporaire à la racine du référentiel
+          mv temp_directory/* ./
+
+          # Supprimez le répertoire temporaire
+          rmdir temp_directory
+        shell: bash
 
       - name: Push to hub
         env:
