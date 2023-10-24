@@ -1,21 +1,28 @@
-name: Sync to Hugging Face hub
+name: Sync to Hugging Face
+
 on:
   push:
-    branches: [main]
-
-  # to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
-          repository: F-Fatih/gradiotest  # Remplacez par le chemin de votre référentiel
-          path: ./code  # Spécifiez ici le répertoire que vous voulez synchroniser
+          fetch-depth: 0
+          lfs: true
+
+      - name: Copy Code folder
+        run: |
+          rsync -avz --exclude '.*' ./Code/ ./
+        env:
+          PATH: ${{ runner.tools }}/rsync
+
+      - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-      - name: Push to hub
-        run: git push --force https://FFatih:$HF_TOKEN@huggingface.co/spaces/FFatih/gradiotest main
+          HF_USERNAME: your_huggingface_username
+          SPACE_NAME: your_space_name
+        run: git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main
