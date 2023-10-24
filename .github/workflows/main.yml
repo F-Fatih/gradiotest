@@ -19,6 +19,7 @@ jobs:
           git config user.name "$FFatih"
           git config user.email "f.fatih@outlook.fr"
           git config --global init.defaultBranch main
+          git config --global user.email "f.fatih@outlook.fr"
           git branch -m main
           git add .
           git commit -m "Sync to Hugging Face"
