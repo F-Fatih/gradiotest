@@ -10,17 +10,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Copy Code directory to root
-        run: |
-          cp -r Code/* .
-        working-directory: ${{ github.workspace }}
-
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
+          cd code  # Accéder au répertoire Code
           git init
-          git config user.name "FFatih"
+          git config user.name "$FFatih"
           git config user.email "f.fatih@outlook.fr"
           git config --global init.defaultBranch main
           git add .
