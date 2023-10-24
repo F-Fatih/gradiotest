@@ -19,8 +19,8 @@ jobs:
           # Créez un répertoire temporaire
           mkdir temp_directory
 
-          # Copiez le contenu du dossier "Code" dans le répertoire temporaire
-          cp -r ./Code/* temp_directory/
+          # Utilisez la commande find pour copier le contenu du dossier "Code" dans le répertoire temporaire
+          find ./Code -type f -exec cp {} temp_directory/ \;
 
           # Déplacez le contenu du répertoire temporaire à la racine du référentiel
           mv temp_directory/* ./
